@@ -1,9 +1,12 @@
 package com.li6a209.easyrecyclerview;
 
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 /**
@@ -19,6 +22,14 @@ class WrapAdapter extends RecyclerView.Adapter {
     static final int HEADER_VIEW_BASE = 0xf00000;
     static final int FOOTER_VIEW_BASE = 0x0f0000;
 
+    static final int LINEARLAYOUT = 0x00;
+    static final int GRID = 0x01;
+    static final int STAGGEREDGRI = 0x02;
+
+    int mLayoutType = 0;
+
+    private int mGridSpanCount = 3;
+
     private static class HeaderFooterViewHolder extends RecyclerView.ViewHolder{
         public HeaderFooterViewHolder(View itemView) {
             super(itemView);
@@ -30,6 +41,10 @@ class WrapAdapter extends RecyclerView.Adapter {
         mAdapter = adapter;
         mHeaderViews = headers;
         mFooterViews = footer;
+    }
+
+    public void setLayoutType(int layoutType){
+        mLayoutType = layoutType;
     }
 
     @Override
@@ -47,6 +62,17 @@ class WrapAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int pos) {
         if(pos >= getHeadersCount() && pos < getHeadersCount() + mAdapter.getItemCount()){
             mAdapter.onBindViewHolder(viewHolder, pos - getHeadersCount());
+        }else{
+            if(mLayoutType == STAGGEREDGRI){
+                StaggeredGridLayoutManager.LayoutParams staggeredLayoutParams = (StaggeredGridLayoutManager.LayoutParams)viewHolder.itemView.getLayoutParams();
+                if(null == staggeredLayoutParams){
+                    staggeredLayoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
+                staggeredLayoutParams.setFullSpan(true);
+                viewHolder.itemView.setLayoutParams(staggeredLayoutParams);
+            }else if (mLayoutType == GRID){
+
+            }
         }
     }
 

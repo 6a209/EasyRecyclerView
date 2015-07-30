@@ -2,5 +2,7 @@
     <string name="app_name">Demo</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="linearlayout">LinearLayout</string>
+    <string name="staggeredgrid">StaggeredGrid</string>
+    <string name="grid">Grid</string>
 </resources>
