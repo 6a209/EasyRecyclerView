@@ -5,11 +5,11 @@
 
 you must add header or footer before setAdapter 
 
-![Alt Text](https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/1.png)
+[[ https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/1.png | width = 160px ]]
 
-![Alt Text](https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/2.png)
+[[ https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/2.png | width = 160px ]]
 
-![Alt Text](https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/3.png)
+[[ https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/3.png | width = 160px]]
 
 ##### How to use
 
@@ -20,7 +20,7 @@ compile 'com.easyrecyclerview:lib:0.4@aar'
 
 ```
 
-
+in java code 
  
 ```
 easyRecycler.addHeader(view);
@@ -29,6 +29,6 @@ easyRecycler.addFooter(view);
 
 recyclerView.setHeaderDividerHeight(20);
 
-recylcerView.setHeaderDrawable(drawable){
+recylcerView.setHeaderDrawable(drawable)
 
 ```
