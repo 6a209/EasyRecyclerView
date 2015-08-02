@@ -5,11 +5,11 @@
 
 you must add header or footer before setAdapter 
 
-[[ https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/1.png | width = 160px ]]
+![](https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/1.png = 240x)
 
-[[ https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/2.png | width = 160px ]]
+![](https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/2.png = 240x) 
 
-[[ https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/3.png | width = 160px]]
+![](https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/3.png = 240x)
 
 ##### How to use
 
