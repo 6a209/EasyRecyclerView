@@ -5,11 +5,10 @@
 
 you must add header or footer before setAdapter 
 
-![](https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/1.png = 240x)
+<img src="https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/1.png" alt="alt text" style="width:240px">
+<img src="https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/2.png" alt="alt text" style="width:240px">
+<img src="https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/3.png" alt="alt text" style="width:240px">
 
-![](https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/2.png = 240x) 
-
-![](https://github.com/6a209/EasyRecyclerView/raw/master/screenshots/3.png = 240x)
 
 ##### How to use
 
