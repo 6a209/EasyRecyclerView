@@ -3,6 +3,7 @@ package com.li6a209.easyrecyclerview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,8 @@ public class EasyRecyclerView extends RecyclerView{
     DividerDecoration mHeaderFooterDecoration;
 
     int mType = -1;
+
+    Adapter mOriginAdapter;
 
 
     public EasyRecyclerView(Context context){
@@ -80,6 +83,7 @@ public class EasyRecyclerView extends RecyclerView{
 
     @Override
     public void setAdapter(Adapter adapter){
+        mOriginAdapter = adapter;
         mWrapAdapter = new WrapAdapter(mHeaderViewInfos, mFooterViewInfos, adapter);
         mWrapAdapter.setLayoutType(mType);
         LayoutManager layoutManager = getLayoutManager();
@@ -95,6 +99,11 @@ public class EasyRecyclerView extends RecyclerView{
 
         }
         super.setAdapter(mWrapAdapter);
+    }
+
+    @Override
+    public Adapter getAdapter(){
+       return mOriginAdapter;
     }
 
     @Override
@@ -135,6 +144,14 @@ public class EasyRecyclerView extends RecyclerView{
 
     public void setFooterDividerHeight(int height){
         mHeaderFooterDecoration.setFooterDividerHeight(height);
+    }
+
+    public int getHeaderCount(){
+        return mHeaderViewInfos.size();
+    }
+
+    public int getFooterCount(){
+        return mFooterViewInfos.size();
     }
 
     static class WrapGridSpanSizeLookup extends GridLayoutManager.SpanSizeLookup{

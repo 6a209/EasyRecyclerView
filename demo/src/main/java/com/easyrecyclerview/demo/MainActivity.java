@@ -1,6 +1,7 @@
 package com.easyrecyclerview.demo;
 
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -18,67 +19,67 @@ import android.widget.TextView;
 
 import com.li6a209.easyrecyclerview.EasyRecyclerView;
 
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    DemoAdapter mDemoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
+        String [] datas = new String[50];
+        for(int i = 0; i < 50; i++){
+            datas[i] = "data " + i;
+        }
+        mDemoAdapter = new DemoAdapter(datas);
+        initLinearLayout();
 
     }
 
     void initLinearLayout(){
-        String [] datas = new String[50];
-        for(int i = 0; i < 50; i++){
-            datas[i] = "it is test data " + i;
-        }
-        DemoAdapter adapter = new DemoAdapter(datas);
-
+        setTitle("LinearLayout");
+        mDemoAdapter.setType(DemoAdapter.LINEAR_TYPE);
         EasyRecyclerView recyclerView = new EasyRecyclerView(this);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         lm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(lm);
         TextView header1 = new TextView(this);
         header1.setText("this is header 1");
-        header1.setTextSize(20);
+        header1.setTextSize(32);
         header1.setGravity(Gravity.CENTER);
-        header1.setBackgroundColor(R.color.material_blue_grey_800);
+        header1.setBackgroundColor(getResources().getColor(R.color.light_blue));
+        header1.setTextColor(getResources().getColor(android.R.color.white));
         header1.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         TextView header2 = new TextView(this);
         header2.setText("this is header 2");
         header2.setTextSize(20);
         header2.setGravity(Gravity.CENTER);
-        header2.setBackgroundColor(Color.parseColor("#acacac"));
+        header2.setTextColor(getResources().getColor(android.R.color.white));
+        header2.setBackgroundColor(getResources().getColor(R.color.light_blue));
+        header2.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         TextView footer1 = new TextView(this);
         footer1.setText("this is footer 1");
         footer1.setTextSize(20);
         footer1.setGravity(Gravity.CENTER);
-        footer1.setBackgroundColor(R.color.material_blue_grey_800);
+        footer1.setBackgroundColor(getResources().getColor(R.color.green));
+        footer1.setTextColor(getResources().getColor(android.R.color.white));
         footer1.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
 
 
         recyclerView.addHeader(header1);
         recyclerView.addHeader(header2);
         recyclerView.addFooter(footer1);
-        recyclerView.setHeaderDrawable(getResources().getDrawable(R.drawable.divider));
-        recyclerView.setHeaderDividerHeight(63);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setHeaderDividerHeight(20);
+        recyclerView.setAdapter(mDemoAdapter);
         setContentView(recyclerView);
     }
 
     void initStaggeredGrid(){
-        String [] datas = new String[150];
-        for(int i = 0; i < 150; i++){
-            datas[i] = "it is test data " + i;
-        }
-        DemoAdapter adapter = new DemoAdapter(datas);
-        adapter.setType(DemoAdapter.STAGGERED_TYPE);
+
+        setTitle("StaggeredGrid");
+        mDemoAdapter.setType(DemoAdapter.STAGGERED_TYPE);
         EasyRecyclerView recyclerView = new EasyRecyclerView(this);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -88,22 +89,31 @@ public class MainActivity extends AppCompatActivity {
         header1.setText("this is header 1");
         header1.setTextSize(20);
         header1.setGravity(Gravity.CENTER);
-        header1.setBackgroundColor(R.color.material_blue_grey_800);
+        header1.setTextColor(getResources().getColor(android.R.color.white));
+        header1.setBackgroundColor(getResources().getColor(R.color.light_blue));
         recyclerView.addHeader(header1);
 
-        recyclerView.setAdapter(adapter);
+        TextView footer1 = new TextView(this);
+        footer1.setText("this is footer 1");
+        footer1.setTextSize(20);
+        footer1.setGravity(Gravity.CENTER);
+        footer1.setBackgroundColor(getResources().getColor(R.color.green));
+        footer1.setTextColor(getResources().getColor(android.R.color.white));
+        recyclerView.addFooter(footer1);
+
+        recyclerView.setHeaderDividerHeight(30);
+        recyclerView.addItemDecoration(new StaggeredItemDecoration(5));
+
+        recyclerView.setAdapter(mDemoAdapter);
         setContentView(recyclerView);
     }
 
 
 
-    void initGird(){
-        String [] datas = new String[150];
-        for(int i = 0; i < 150; i++){
-            datas[i] = "it is test data " + i;
-        }
-        DemoAdapter adapter = new DemoAdapter(datas);
-        adapter.setType(DemoAdapter.GRID);
+    void initGrid(){
+
+        setTitle("Grid");
+        mDemoAdapter.setType(DemoAdapter.GRID);
         EasyRecyclerView recyclerView = new EasyRecyclerView(this);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
@@ -113,10 +123,21 @@ public class MainActivity extends AppCompatActivity {
         header1.setText("this is header 1");
         header1.setTextSize(20);
         header1.setGravity(Gravity.CENTER);
-        header1.setBackgroundColor(R.color.material_blue_grey_800);
+        header1.setTextColor(getResources().getColor(android.R.color.white));
+        header1.setBackgroundColor(getResources().getColor(R.color.light_blue));
         recyclerView.addHeader(header1);
 
-        recyclerView.setAdapter(adapter);
+        TextView footer1 = new TextView(this);
+        footer1.setText("this is footer 1");
+        footer1.setTextSize(20);
+        footer1.setGravity(Gravity.CENTER);
+        footer1.setBackgroundColor(getResources().getColor(R.color.green));
+        footer1.setTextColor(getResources().getColor(android.R.color.white));
+        recyclerView.addFooter(footer1);
+
+        recyclerView.addItemDecoration(new GridItemDecoration(5));
+
+        recyclerView.setAdapter(mDemoAdapter);
         setContentView(recyclerView);
     }
 
@@ -142,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         }else if(id == R.id.staggeredgrid){
             initStaggeredGrid();
         }else if(id == R.id.grid){
-            initGird();
+            initGrid();
         }
 
         return super.onOptionsItemSelected(item);
@@ -173,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         public DemoAdapter(String[] myDataset) {
             mDataset = myDataset;
             for(int i = 0; i < 150; i++){
-                mHeight[i] = (int) (Math.random() * 100 + 50);
+                mHeight[i] = (int) (Math.random() * 200 + 150);
             }
 
         }
@@ -195,8 +216,12 @@ public class MainActivity extends AppCompatActivity {
             holder.mTextView.setText(mDataset[position]);
             holder.mTextView.setGravity(Gravity.CENTER);
             if(mType == STAGGERED_TYPE){
-                holder.mTextView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, mHeight[position]));
-                holder.mView.setBackgroundColor(Color.parseColor("#992222"));
+                holder.mTextView.setTextColor(Color.parseColor("#ffffff"));
+                holder.mTextView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, mHeight[position]));
+                holder.mView.setBackgroundColor(Color.parseColor("#ec407a"));
+            }else if(mType == GRID){
+                holder.mTextView.setTextColor(Color.parseColor("#ffffff"));
+                holder.mView.setBackgroundColor(Color.parseColor("#78909c"));
             }
 
         }
@@ -206,4 +231,64 @@ public class MainActivity extends AppCompatActivity {
             return mDataset.length;
         }
     }
+
+    public class GridItemDecoration extends RecyclerView.ItemDecoration {
+        private int space;
+        public GridItemDecoration(int space) {
+            this.space = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+            outRect.left = space;
+
+            EasyRecyclerView easyRecyclerView = (EasyRecyclerView)parent;
+            if((parent.getChildAdapterPosition(view) - easyRecyclerView.getHeaderCount())  % 3 == 2){
+                outRect.right = space;
+            }
+            outRect.bottom = space;
+            if (parent.getChildAdapterPosition(view) == 0) {
+                outRect.top = space;
+            }
+        }
+    }
+
+    public class StaggeredItemDecoration extends RecyclerView.ItemDecoration {
+        private int space;
+
+        public StaggeredItemDecoration(int space) {
+            this.space = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+
+            EasyRecyclerView easyRecyclerView = (EasyRecyclerView)parent;
+            int pos = easyRecyclerView.getChildAdapterPosition(view);
+
+
+            if(pos < easyRecyclerView.getHeaderCount()){
+                //header
+                return;
+            }
+
+            if(pos >= (easyRecyclerView.getAdapter().getItemCount() + easyRecyclerView.getHeaderCount())){
+                //footer
+                return;
+            }
+
+            int index = ((StaggeredGridLayoutManager.LayoutParams)view.getLayoutParams()).getSpanIndex();
+
+            outRect.left = space;
+            if(index  % 3 == 2){
+                outRect.right = space;
+            }
+            outRect.bottom = space;
+            if (parent.getChildPosition(view) == 0) {
+                outRect.top = space;
+            }
+        }
+    }
+
+
 }

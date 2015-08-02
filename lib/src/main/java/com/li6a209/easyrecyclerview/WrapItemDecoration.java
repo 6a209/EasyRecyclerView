@@ -32,7 +32,7 @@ class WrapItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         int count = parent.getChildCount();
-        int adapterCount = parent.getAdapter().getItemCount();
+        int adapterCount = parent.getAdapter().getItemCount() + mHeaderCount + mFooterCount;
         for(int i = 0; i < count; i++){
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams)child.getLayoutParams();
@@ -46,7 +46,7 @@ class WrapItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         int count = parent.getChildCount();
-        int adapterCount = parent.getAdapter().getItemCount();
+        int adapterCount = parent.getAdapter().getItemCount() + mHeaderCount + mFooterCount;
         for (int i = 0; i < count; i++) {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
@@ -60,7 +60,7 @@ class WrapItemDecoration extends RecyclerView.ItemDecoration {
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) view.getLayoutParams();
         int pos = params.getViewPosition();
-        int adapterCount = parent.getAdapter().getItemCount();
+        int adapterCount = parent.getAdapter().getItemCount() + mHeaderCount + mFooterCount;
         if(pos >= mHeaderCount && pos < adapterCount - mFooterCount){
             // noraml content
             if(null == mOriginItemDecoration){

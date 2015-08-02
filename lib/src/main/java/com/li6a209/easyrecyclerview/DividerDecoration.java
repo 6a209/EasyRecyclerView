@@ -49,7 +49,7 @@ class DividerDecoration extends RecyclerView.ItemDecoration{
     @Override
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         int count = parent.getChildCount();
-        int adapterCount = parent.getAdapter().getItemCount();
+        int adapterCount = parent.getAdapter().getItemCount() + mHeaderCount + mFooterCount;
         for (int i = 0; i < count; i++) {
             View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
@@ -81,7 +81,7 @@ class DividerDecoration extends RecyclerView.ItemDecoration{
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) view.getLayoutParams();
         int position = params.getViewPosition();
-        int adapterCount = parent.getAdapter().getItemCount();
+        int adapterCount = parent.getAdapter().getItemCount() + mHeaderCount + mFooterCount;
         if(position < mHeaderCount){
             // header
             outRect.set(0, 0, 0, mHeaderDividerHeight);
